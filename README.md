@@ -147,3 +147,52 @@ node get-dimensions.js
 ```
 
 See [Page.evaluate()](https://github.com/puppeteer/puppeteer/blob/v10.4.0/docs/api.md#pageevaluatepagefunction-args) for more information on `evaluate` and related methods like `evaluateOnNewDocument` and `exposeFunction`.
+
+# Default runtime settings
+
+### 1. Uses Headless mode
+
+Puppeteer launches Chromium in [headless](https://developers.google.com/web/updates/2017/04/headless-chrome) mode. To launch a full version of Chromium, set the [headless option](https://github.com/puppeteer/puppeteer/blob/v11.0.0/docs/api.md#puppeteerlaunchoptions) when launching a browser:
+
+```js
+const browser = await puppeteer.launch({ headless: false }); // default is true
+```
+
+### 2. Runs a bundled version of Chromium
+
+By default, Puppeteer downloads and uses a specific version of Chromium so its API is guaranteed to work out of the box. To use Puppeteer with a different version of Chrome or Chromium, pass in the executable's path when creating a Browser instance:
+
+```js
+const browser = await puppeteer.launch({ executablePath: 'C:\\Users\\bruce_zhang\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe' });
+```
+
+You can also use Puppeteer with Firefox Nightly (experimental support). See [Puppeteer.launch()](https://github.com/puppeteer/puppeteer/blob/v11.0.0/docs/api.md#puppeteerlaunchoptions) for more information.
+
+### 3. Creates a fresh user profile
+
+Puppeteer creates its own browser user profile which it cleans up on every run.
+
+# Debugging tips
+
+1. Turn off headless mode - sometimes it's useful to see what the browser is displaying. Instead of launching in headless mode, launch a full version of the browser using `headless: false`:
+
+```js
+const browser = await puppeteer.launch({ headless: false });
+```
+
+2. Slow it down - the `slowMo` option slows down Puppeteer operations by the specified amount of milliseconds. It's another way to help see what's going on.
+
+```js
+const browser = await puppeteer.launch({
+  headless: false,
+  slowMo: 250, // slow down by 250ms
+});
+```
+
+3. Capture console output - You can listen for the `console` event. This is also handy when debugging code in `page.evaluate()`:
+
+```js
+page.on('console', (msg) => console.log('PAGE LOG:', msg.text()));
+
+await page.evaluate(() => console.log(`url is ${location.href}`));
+```
