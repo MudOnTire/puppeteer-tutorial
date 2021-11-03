@@ -51,7 +51,7 @@ See [puppeteer vs puppeteer-core](https://github.com/puppeteer/puppeteer/blob/ma
 
 **Example 1** - navigating to https://example.com and saving a screenshot as example.png:
 
-Save file as **example.js**
+Save file as **screenshot.js**
 
 ```js
 const puppeteer = require("puppeteer");
@@ -84,7 +84,7 @@ page.setViewport({
 
 **Example 2** - create a PDF.
 
-Save file as **hn.js**
+Save file as **pdf.js**
 
 ```js
 const puppeteer = require("puppeteer");
@@ -92,10 +92,14 @@ const puppeteer = require("puppeteer");
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto("https://news.ycombinator.com", {
+  await page.goto("https://www.trendmicro.com/", {
     waitUntil: "networkidle2",
   });
-  await page.pdf({ path: "hn.pdf", format: "a4" });
+  await page.waitForSelector("main.container-fluid");
+  await page.pdf({
+    path: "trendmicro.pdf",
+    format: "a2",
+  });
 
   await browser.close();
 })();
