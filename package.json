@@ -1,0 +1,11 @@
+{
+  "name": "puppeteer-tutorial",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:MudOnTire/puppeteer-tutorial.git",
+  "author": "bruce_zhang <bruce_zhang@trendmicro.com>",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^10.4.0"
+  }
+}
