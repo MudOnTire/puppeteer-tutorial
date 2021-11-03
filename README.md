@@ -1,4 +1,5 @@
 # What's puppeteer
+
 Puppeteer is a Node library which provides a high-level API to control Chrome or Chromium over the [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). Puppeteer runs [headless](https://developers.google.com/web/updates/2017/04/headless-chrome) by default, but can be configured to run full (non-headless) Chrome or Chromium.
 
 ### What can I do?
@@ -19,7 +20,9 @@ Most things that you can do manually in the browser can be done using Puppeteer!
 ```shell
 npm i puppeteer
 ```
+
 or
+
 ```shell
 yarn add puppeteer
 ```
@@ -33,7 +36,9 @@ yarn add puppeteer
 ```shell
 npm i puppeteer-core
 ```
+
 or
+
 ```shell
 yarn add puppeteer-core
 ```
@@ -49,39 +54,48 @@ See [puppeteer vs puppeteer-core](https://github.com/puppeteer/puppeteer/blob/ma
 Save file as **example.js**
 
 ```js
-const puppeteer = require('puppeteer');
+const puppeteer = require("puppeteer");
 
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto('https://example.com');
-  await page.screenshot({ path: 'example.png' });
+  await page.goto("https://example.com");
+  await page.screenshot({ path: "example.png" });
 
   await browser.close();
 })();
 ```
+
 Execute script on the command line
 
 ```shell
 node example.js
 ```
 
-Puppeteer sets an initial page size to 800×600px, which defines the screenshot size. The page size can be customized with [Page.setViewport()](https://github.com/puppeteer/puppeteer/blob/v10.4.0/docs/api.md#pagesetviewportviewport).
+Puppeteer sets an initial page size to 800×600px, which defines the screenshot size. The page size can be customized with [Page.setViewport()](https://github.com/puppeteer/puppeteer/blob/v10.4.0/docs/api.md#pagesetviewportviewport), for example:
+
+```js
+page.setViewport({
+  width: 1600,
+  height: 1080,
+  deviceScaleFactor: 2,
+});
+```
 
 **Example 2** - create a PDF.
 
 Save file as **hn.js**
 
 ```js
-const puppeteer = require('puppeteer');
+const puppeteer = require("puppeteer");
 
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto('https://news.ycombinator.com', {
-    waitUntil: 'networkidle2',
+  await page.goto("https://news.ycombinator.com", {
+    waitUntil: "networkidle2",
   });
-  await page.pdf({ path: 'hn.pdf', format: 'a4' });
+  await page.pdf({ path: "hn.pdf", format: "a4" });
 
   await browser.close();
 })();
@@ -100,12 +114,12 @@ See [Page.pdf()](https://github.com/puppeteer/puppeteer/blob/v10.4.0/docs/api.md
 Save file as **get-dimensions.js**
 
 ```js
-const puppeteer = require('puppeteer');
+const puppeteer = require("puppeteer");
 
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto('https://example.com');
+  await page.goto("https://example.com");
 
   // Get the "viewport" of the page, as reported by the page.
   const dimensions = await page.evaluate(() => {
@@ -116,7 +130,7 @@ const puppeteer = require('puppeteer');
     };
   });
 
-  console.log('Dimensions:', dimensions);
+  console.log("Dimensions:", dimensions);
 
   await browser.close();
 })();
