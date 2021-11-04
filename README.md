@@ -269,3 +269,10 @@ env DEBUG=puppeteer:\* env DEBUG_COLORS=true node ./examples/screenshot.js 2>&1 
   # To use a local binary, use `npx` and prepend before it
   ndb npx mocha
   ```
+
+# Resources
+
+1. [API documentation](https://github.com/puppeteer/puppeteer/blob/v11.0.0/docs/api.md)
+1. [Examples](https://github.com/puppeteer/puppeteer/tree/main/examples/)
+1. [Github - Awesome Puppeteer](https://github.com/transitive-bullshit/awesome-puppeteer)
+1. [Troubleshooting](https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md)
