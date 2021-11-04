@@ -163,7 +163,10 @@ const browser = await puppeteer.launch({ headless: false }); // default is true
 By default, Puppeteer downloads and uses a specific version of Chromium so its API is guaranteed to work out of the box. To use Puppeteer with a different version of Chrome or Chromium, pass in the executable's path when creating a Browser instance:
 
 ```js
-const browser = await puppeteer.launch({ executablePath: 'C:\\Users\\bruce_zhang\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe' });
+const browser = await puppeteer.launch({
+  executablePath:
+    "C:\\Users\\bruce_zhang\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe",
+});
 ```
 
 You can also use Puppeteer with Firefox Nightly (experimental support). See [Puppeteer.launch()](https://github.com/puppeteer/puppeteer/blob/v11.0.0/docs/api.md#puppeteerlaunchoptions) for more information.
@@ -192,7 +195,7 @@ const browser = await puppeteer.launch({
 3. Capture console output - You can listen for the `console` event. This is also handy when debugging code in `page.evaluate()`:
 
 ```js
-page.on('console', (msg) => console.log('PAGE LOG:', msg.text()));
+page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
 
 await page.evaluate(() => console.log(`url is ${location.href}`));
 ```
@@ -219,7 +222,20 @@ The test will now stop executing in the above evaluate statement, and chromium w
 
 5. Enable verbose logging - internal DevTools protocol traffic will be logged via the [debug](https://github.com/visionmedia/debug) module under the `puppeteer` namespace.
 
+**Basic verbose logging**
+
+```shell
+env DEBUG=puppeteer:* node ./examples/screenshot.js
 ```
-# Basic verbose logging
-env DEBUG="puppeteer:*" node script.js
+
+For windows, use [cross-env](https://www.npmjs.com/package/cross-env)
+
+```shell
+npx cross-env DEBUG=puppeteer:* node ./examples/screenshot.js
+```
+
+**Protocol traffic can be rather noisy. This example filters out all Network domain messages**
+
+```shell
+env DEBUG=puppeteer:\* env DEBUG_COLORS=true node ./examples/screenshot.js 2>&1 | grep -v '"Network'
 ```
