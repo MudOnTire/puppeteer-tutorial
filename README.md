@@ -239,3 +239,33 @@ npx cross-env DEBUG=puppeteer:* node ./examples/screenshot.js
 ```shell
 env DEBUG=puppeteer:\* env DEBUG_COLORS=true node ./examples/screenshot.js 2>&1 | grep -v '"Network'
 ```
+
+6. Debug your Puppeteer (node) code easily, using [ndb](https://github.com/GoogleChromeLabs/ndb)
+
+- `yarn global add ndb` or `yarn add -D ndb`
+
+- add a `debugger` to your Puppeteer (node) code
+
+- use `ndb` instead of the `node` command
+
+  ```shell
+  ndb server.js
+
+  # Alternatively, you can prepend `ndb`
+  ndb node server.js
+  ```
+
+- Prepend `ndb` in front of any other binary
+
+  ```shell
+  # If you use some other binary, just prepend `ndb`
+  ## npm run unit
+  ndb npm run unit
+
+  # Debug any globally installed package
+  ## mocha
+  ndb mocha
+
+  # To use a local binary, use `npx` and prepend before it
+  ndb npx mocha
+  ```

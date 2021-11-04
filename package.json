@@ -9,6 +9,7 @@
     "puppeteer": "^10.4.0"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "ndb": "^1.1.5"
   }
 }
