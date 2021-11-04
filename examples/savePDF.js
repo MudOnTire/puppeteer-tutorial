@@ -4,9 +4,9 @@ const puppeteer = require("puppeteer");
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto("https://www.trendmicro.com/", {
-    waitUntil: "networkidle2",
+    waitUntil: "networkidle0",
   });
-  await page.waitForSelector("main.container-fluid");
+  // await page.waitForSelector("main.container-fluid");
   await page.pdf({
     path: "trendmicro.pdf",
     format: "a2",

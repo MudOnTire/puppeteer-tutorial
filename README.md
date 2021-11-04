@@ -2,7 +2,7 @@
 
 Puppeteer is a Node library which provides a high-level API to control Chrome or Chromium over the [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). Puppeteer runs [headless](https://developers.google.com/web/updates/2017/04/headless-chrome) by default, but can be configured to run full (non-headless) Chrome or Chromium.
 
-### What can I do?
+### What can you do?
 
 Most things that you can do manually in the browser can be done using Puppeteer! Here are a few examples to get you started:
 
@@ -82,9 +82,9 @@ page.setViewport({
 });
 ```
 
-**Example 2** - create a PDF.
+**Example 2** - Save web pages as PDF.
 
-Save file as **pdf.js**
+Save file as **savePDF.js**
 
 ```js
 const puppeteer = require("puppeteer");
@@ -108,7 +108,7 @@ const puppeteer = require("puppeteer");
 Execute script on the command line
 
 ```shell
-node hn.js
+node savePDF.js
 ```
 
 See [Page.pdf()](https://github.com/puppeteer/puppeteer/blob/v10.4.0/docs/api.md#pagepdfoptions) for more information about creating pdfs.
@@ -272,6 +272,7 @@ env DEBUG=puppeteer:\* env DEBUG_COLORS=true node ./examples/screenshot.js 2>&1 
 
 # Resources
 
+1. [Home page](https://pptr.dev/)
 1. [API documentation](https://github.com/puppeteer/puppeteer/blob/v11.0.0/docs/api.md)
 1. [Examples](https://github.com/puppeteer/puppeteer/tree/main/examples/)
 1. [Github - Awesome Puppeteer](https://github.com/transitive-bullshit/awesome-puppeteer)
