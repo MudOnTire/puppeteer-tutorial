@@ -196,3 +196,30 @@ page.on('console', (msg) => console.log('PAGE LOG:', msg.text()));
 
 await page.evaluate(() => console.log(`url is ${location.href}`));
 ```
+
+4. Use debugger in application code browser
+
+There are two execution context: node.js that is running test code, and the browser running application code being tested. This lets you debug code in the application code browser; ie code inside `evaluate()`.
+
+- Use `{devtools: true}` when launching Puppeteer:
+
+```js
+const browser = await puppeteer.launch({ devtools: true });
+```
+
+- Add an evaluate statement with `debugger` inside / add `debugger` to an existing evaluate statement:
+
+```js
+await page.evaluate(() => {
+  debugger;
+});
+```
+
+The test will now stop executing in the above evaluate statement, and chromium will stop in debug mode.
+
+5. Enable verbose logging - internal DevTools protocol traffic will be logged via the [debug](https://github.com/visionmedia/debug) module under the `puppeteer` namespace.
+
+```
+# Basic verbose logging
+env DEBUG="puppeteer:*" node script.js
+```
