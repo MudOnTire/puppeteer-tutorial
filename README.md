@@ -164,8 +164,7 @@ By default, Puppeteer downloads and uses a specific version of Chromium so its A
 
 ```js
 const browser = await puppeteer.launch({
-  executablePath:
-    "C:\\Users\\bruce_zhang\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe",
+  executablePath: "C:\\Users\\bruce_zhang\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe",
 });
 ```
 
@@ -177,13 +176,13 @@ Puppeteer creates its own browser user profile which it cleans up on every run.
 
 # Debugging tips
 
-1. Turn off headless mode - sometimes it's useful to see what the browser is displaying. Instead of launching in headless mode, launch a full version of the browser using `headless: false`:
+### 1. Turn off headless mode - sometimes it's useful to see what the browser is displaying. Instead of launching in headless mode, launch a full version of the browser using `headless: false`:
 
 ```js
 const browser = await puppeteer.launch({ headless: false });
 ```
 
-2. Slow it down - the `slowMo` option slows down Puppeteer operations by the specified amount of milliseconds. It's another way to help see what's going on.
+### 2. Slow it down - the `slowMo` option slows down Puppeteer operations by the specified amount of milliseconds. It's another way to help see what's going on.
 
 ```js
 const browser = await puppeteer.launch({
@@ -192,7 +191,7 @@ const browser = await puppeteer.launch({
 });
 ```
 
-3. Capture console output - You can listen for the `console` event. This is also handy when debugging code in `page.evaluate()`:
+### 3. Capture console output - You can listen for the `console` event. This is also handy when debugging code in `page.evaluate()`:
 
 ```js
 page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
@@ -200,7 +199,7 @@ page.on("console", (msg) => console.log("PAGE LOG:", msg.text()));
 await page.evaluate(() => console.log(`url is ${location.href}`));
 ```
 
-4. Use debugger in application code browser
+### 4. Use debugger in application code browser
 
 There are two execution context: node.js that is running test code, and the browser running application code being tested. This lets you debug code in the application code browser; ie code inside `evaluate()`.
 
@@ -220,7 +219,7 @@ await page.evaluate(() => {
 
 The test will now stop executing in the above evaluate statement, and chromium will stop in debug mode.
 
-5. Enable verbose logging - internal DevTools protocol traffic will be logged via the [debug](https://github.com/visionmedia/debug) module under the `puppeteer` namespace.
+### 5. Enable verbose logging - internal DevTools protocol traffic will be logged via the [debug](https://github.com/visionmedia/debug) module under the `puppeteer` namespace.
 
 **Basic verbose logging**
 
@@ -240,7 +239,7 @@ npx cross-env DEBUG=puppeteer:* node ./examples/screenshot.js
 env DEBUG=puppeteer:\* env DEBUG_COLORS=true node ./examples/screenshot.js 2>&1 | grep -v '"Network'
 ```
 
-6. Debug your Puppeteer (node) code easily, using [ndb](https://github.com/GoogleChromeLabs/ndb)
+### 6. Debug your Puppeteer (node) code easily, using [ndb](https://github.com/GoogleChromeLabs/ndb)
 
 - `yarn global add ndb` or `yarn add -D ndb`
 
