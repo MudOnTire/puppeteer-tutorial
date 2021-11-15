@@ -1,3 +1,5 @@
+![puppeteer](./puppeteer.png)
+
 # Puppeteer 是什么
 
 Puppeteer 是一个 Node library，提供了一套完整的通过 [DevTools 协议](https://chromedevtools.github.io/devtools-protocol/)操纵 Chrome 或 Chromium 的 API。Puppeteer 默认以 [无头（headless）](https://developers.google.com/web/updates/2017/04/headless-chrome) 的方式运行, 也可以使用 GUI 的方式运行 Chrome 和 Chromium。
@@ -11,8 +13,8 @@ Puppeteer 是一个 Node library，提供了一套完整的通过 [DevTools 协�
 - 对页面和元素截图
 - 把页面保存为 PDF
 - 爬取 SPA（Single-Page Application）网站的内容并为 SSR（Server-Side Rendering）网站生成 pre-render 的内容
-- UI 自动化测试、自动填充/提交表单、模拟 UI 输入）
-- 测试最新的 Javascript 或 Chrome 功能
+- UI 自动化测试、自动填充/提交表单、模拟 UI 输入
+- 测试最新的 Javascript 和 Chrome 功能
 - 性能测试，生成 [timeline trace](https://developer.chrome.com/docs/devtools/evaluate-performance/reference/) 用于定位网站性能问题
 - 测试 Chrome 的插件
 
@@ -193,7 +195,7 @@ const puppeteer = require("puppeteer");
   // 等待结果返回
   const resultsSelector = ".gsc-result .gs-title";
   await page.waitForSelector(resultsSelector);
-  //  从页面中爬取结果
+  // 从页面中爬取结果
   const links = await page.evaluate((resultsSelector) => {
     const anchors = Array.from(document.querySelectorAll(resultsSelector));
     return anchors.map((anchor) => {
@@ -268,7 +270,7 @@ await page.evaluate(() => console.log(`url is ${location.href}`));
 **基本用法：**
 
 ```shell
-env DEBUG=puppeteer:* node screenshot.js
+DEBUG=puppeteer:* node screenshot.js
 ```
 
 Windows 下面可以使用[cross-env](https://www.npmjs.com/package/cross-env)
@@ -277,13 +279,13 @@ Windows 下面可以使用[cross-env](https://www.npmjs.com/package/cross-env)
 npx cross-env DEBUG=puppeteer:* node screenshot.js
 ```
 
-**协议流量可能相当复杂，我们过滤掉所有网络域消息**
+**协议流量可能相当复杂，我们可以过滤掉所有网络域消息**
 
 ```shell
 env DEBUG=puppeteer:\* env DEBUG_COLORS=true node ./examples/screenshot.js 2>&1 | grep -v '"Network'
 ```
 
-### 6. 使用 [ndb](https://github.com/GoogleChromeLabs/ndb) 工具进行调试
+### 6. 使用 ndb 工具进行调试，具体用法请参考 [ndb](https://github.com/GoogleChromeLabs/ndb)
 
 # 资源链接
 
@@ -292,3 +294,5 @@ env DEBUG=puppeteer:\* env DEBUG_COLORS=true node ./examples/screenshot.js 2>&1 
 1. [使用示例](https://github.com/puppeteer/puppeteer/tree/main/examples/)
 1. [Github - Awesome Puppeteer](https://github.com/transitive-bullshit/awesome-puppeteer)
 1. [Troubleshooting](https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md)
+
+本文 Demo 链接：https://github.com/MudOnTire/puppeteer-tutorial
