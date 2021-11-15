@@ -2,7 +2,8 @@ const puppeteer = require('puppeteer');
 
 (async () => {
   const browser = await puppeteer.launch({
-    headless: false,
+    // headless: false,
+    devtools: true,
   });
   const page = await browser.newPage();
 
@@ -10,11 +11,10 @@ const puppeteer = require('puppeteer');
 
   // Type into search box.
   await page.type('.devsite-search-field', 'Headless Chrome');
-
-  // Wait for suggest overlay to appear and click "show all results".
-  const allResultsSelector = '.devsite-suggest-all-results';
-  await page.waitForSelector(allResultsSelector);
-  await page.click(allResultsSelector);
+  await page.keyboard.press('Enter');
+  await page.evaluate(() => {
+    debugger;
+  });
 
   // Wait for the results page to load and display the results.
   const resultsSelector = '.gsc-result .gs-title';
